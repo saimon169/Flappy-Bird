@@ -21,7 +21,7 @@ window.onload = function() {
     board = document.querySelector('#board');
     board.height = boardHeight;
     board.width = boardWidth;
-    context = board.getContext('2d'); // used for drawing aon the board
+    context = board.getContext('2d'); // used for drawing on the board
 
     //draw bird
     // context.fillStyle = "green";
