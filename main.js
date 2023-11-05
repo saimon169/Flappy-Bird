@@ -43,7 +43,7 @@ window.onload = function() {
 
     //load bird Image
     birdImage = new Image();
-    birdImage.p = './images/flappybird.png';
+    birdImage.src = './images/flappybird.png';
     birdImage.onload = function(){
         context.drawImage(birdImage,bird.x,bird.y,bird.width,bird.height);
     }
