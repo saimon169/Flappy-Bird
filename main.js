@@ -70,13 +70,22 @@ function update() {
     //pipes
     for (let i=0;i<pipeArray.length;i++){
         let pipe=pipeArray[i];
-        pipe.x +=velocityX;
+        pipe.x +=velocityX;         //move left 2px
         context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
     }
 }
 
 //every 1.5 sec yo function call 
 function placepipes(){
+
+    //(0-1) * pipeHeight/2.
+    // 0 -> -128(pipeheight/4)
+    // 1 -> -128 -256(pipeheight/4 - pipeheight/2) 
+
+
+    let randomPipeY= pipeY-pipeHeight/4-math.random()*(pipeHeight/2);   // 1/4*h to 3/4*h
+    let openingSpace= board.height/4;
+
     let topPipe={
         img : topPipeImg,
         x: pipeX,
@@ -88,4 +97,14 @@ function placepipes(){
 
     pipeArray.push(topPipe);    //add new pipe to array
 
+    let bottompipe={
+        img : bottomPipeImg,
+        x: pipeX,
+        y: randomPipeY +pipeHeight+openingSpace,
+        width: pipeWidth,
+        height: pipeHeight,
+        passed: false
+    }
+
+    pipeArray.push(bottompipe); 
 }
