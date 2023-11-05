@@ -43,16 +43,16 @@ window.onload = function() {
 
     //load bird Image
     birdImage = new Image();
-    birdImage.src = './images/flappybird.png';
+    birdImage.p = './images/flappybird.png';
     birdImage.onload = function(){
         context.drawImage(birdImage,bird.x,bird.y,bird.width,bird.height);
     }
 
     topPipeImg=new Image();
-    topPipeImg.scr='./images/toppipe.png';
+    topPipeImg.src='./images/toppipe.png';
 
     bottomPipeImg=new Image();
-    bottomPipeImg.scr='./images/bottompipe.png';
+    bottomPipeImg.src='./images/bottompipe.png';
 
     requestAnimationFrame(update);
     setInterval(placepipes, 1500); // 1.5 secs
@@ -69,10 +69,13 @@ function update() {
 
     //pipes
     for (let i=0;i<pipeArray.length;i++){
+        console.log(pipeArray);
         let pipe=pipeArray[i];
         pipe.x +=velocityX;         //move left 2px
         context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+        
     }
+    
 }
 
 //every 1.5 sec yo function call 
@@ -83,13 +86,13 @@ function placepipes(){
     // 1 -> -128 -256(pipeheight/4 - pipeheight/2) 
 
 
-    let randomPipeY= pipeY-pipeHeight/4-math.random()*(pipeHeight/2);   // 1/4*h to 3/4*h
+    let randomPipeY= pipeY-pipeHeight/4-Math.random()*(pipeHeight/2);   // 1/4*h to 3/4*h
     let openingSpace= board.height/4;
 
     let topPipe={
         img : topPipeImg,
         x: pipeX,
-        y: pipeY,
+        y: randomPipeY,
         width: pipeWidth,
         height: pipeHeight,
         passed: false
@@ -100,7 +103,7 @@ function placepipes(){
     let bottompipe={
         img : bottomPipeImg,
         x: pipeX,
-        y: randomPipeY +pipeHeight+openingSpace,
+        y: randomPipeY +pipeHeight+ openingSpace,
         width: pipeWidth,
         height: pipeHeight,
         passed: false
